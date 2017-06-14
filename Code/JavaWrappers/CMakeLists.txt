@@ -7,10 +7,14 @@ SET(CMAKE_SWIG_FLAGS "")
 
 if(WIN32)
 	set(RDKit_Wrapper_Libs
+        FilterCatalog
+        Catalogs
+        ${Boost_SERIALIZATION_LIBRARY}
+        FMCS MolDraw2D
         FileParsers SmilesParse
 	Depictor SubstructMatch ChemReactions Fingerprints ChemTransforms
-        Descriptors MolTransforms  PartialCharges 
-	Subgraphs GraphMol DataStructs
+        Descriptors MolTransforms  PartialCharges
+	Subgraphs GraphMol DataStructs Trajectory
 	DistGeomHelpers DistGeometry ForceFieldHelpers ForceField
 	EigenSolvers
 	Optimizer
@@ -25,11 +29,16 @@ if(WIN32)
           set(RDKit_Wrapper_Libs AvalonLib  avalon_clib ${RDKit_Wrapper_Libs})
         endif(RDK_BUILD_AVALON_SUPPORT)
 else()
-	set(RDKit_Wrapper_Libs 
+	set(RDKit_Wrapper_Libs
+        Catalogs_static
+        FilterCatalog_static
+        ${Boost_SERIALIZATION_LIBRARY}
+        FMCS_static MolDraw2D_static
         FileParsers_static SmilesParse_static
 	Depictor_static SubstructMatch_static ChemReactions_static Fingerprints_static ChemTransforms_static
-	Subgraphs_static GraphMol_static DataStructs_static Descriptors_static PartialCharges_static MolTransforms_static
-	DistGeomHelpers_static DistGeometry_static ForceFieldHelpers_static ForceField_static
+	Subgraphs_static GraphMol_static DataStructs_static Trajectory_static Descriptors_static
+  PartialCharges_static MolTransforms_static DistGeomHelpers_static DistGeometry_static
+  ForceFieldHelpers_static ForceField_static
 	EigenSolvers_static
 	Optimizer_static
 	MolAlign_static

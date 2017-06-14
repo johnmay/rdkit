@@ -9,11 +9,11 @@
 //  of the RDKit source tree.
 //
 
-#include <boost/python.hpp>
+#include <RDBoost/python.h>
 #include <RDGeneral/types.h>
 
 #include <RDBoost/Wrap.h>
-#include <RDBoost/Exceptions.h>
+#include <RDGeneral/Exceptions.h>
 #include <GraphMol/SanitException.h>
 
 namespace python = boost::python;
@@ -21,16 +21,9 @@ using namespace RDKit;
 
 void wrap_queries();
 
-
-BOOST_PYTHON_MODULE(rdqueries)
-{
+BOOST_PYTHON_MODULE(rdqueries) {
   python::scope().attr("__doc__") =
-    "Module containing RDKit functionality for querying molecules."
-    ;
-  python::register_exception_translator<IndexErrorException>(&translate_index_error);
-  python::register_exception_translator<ValueErrorException>(&translate_value_error);
+      "Module containing RDKit functionality for querying molecules.";
 
   wrap_queries();
 }
-
-
